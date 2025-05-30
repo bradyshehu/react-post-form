@@ -13,6 +13,9 @@ export default function Main() {
   const [formData, setFormData] = useState(initialFormData);
 
   function handleFormData(e) {
+    const isPublic =
+      e.target.type === "checkbox" ? e.target.value : e.target.checked;
+
     setFormData((formData) => ({
       ...formData,
       [e.target.name]: e.target.value,
@@ -67,7 +70,12 @@ export default function Main() {
             placeholder="Inserisci il testo del post"
           ></textarea>
 
-          <input type="checkbox" name="public" />
+          <input
+            type="checkbox"
+            name="public"
+            value={true}
+            onChange={handleFormData}
+          />
           <label htmlFor="public" className="form-check-label m-2">
             Rendi pubblico
           </label>
